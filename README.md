@@ -1,83 +1,112 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/530c2667-5dbc-4df3-824c-de37f975c833/deploy-status)](https://app.netlify.com/sites/chiragchrg/deploys)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Muhammad Faiz
 
-##### Created : 09/04/2023
+**Backend & Cloud Engineer**
 
-# ChiragChrg | My Personal Portfolio | Fullstack Web Developer
-Welcome to ChiragChrg's portfolio website, your gateway to the dynamic world of full stack web development. Immerse yourself in the digital realm where my expertise in coding and design converges to create extraordinary online experiences.
+I am a Backend and Cloud Engineer with 1+ year of professional experience building Python services and APIs and deploying applications on AWS and Linux. My work spans API development, data storage, background processing, and the infrastructure that runs backend applications.
 
-## 💻 Preview
-![Portfolio Preview](public/Mockup_Preview.png)
+## About
 
-## 🚀 Live Demo  
-Check out the current live version of the portfolio:  
-👉 **https://chiragchrg.netlify.app**
+I work as a Backend Software Engineer at NexVolt Solutions in Peshawar. Before this role, I completed backend engineering internships at Wanclouds in Islamabad and Go Jins remotely. I focus on Python backend development, cloud deployments, Linux server operations, and integrating AI/ML capabilities into backend applications.
 
-Preview the upcoming version here (Nightly Build - [astro branch](https://github.com/ChiragChrg/Portfolio/tree/astro)):  
-👉 **https://chiragchrg-nightly.netlify.app/**
+## Technical Skills
 
-### 🚧 Nightly Build in Progress  
-A fresh version is under active development—this isn’t just a revamp but a more extensible architecture designed for quick personalization:
+| Area | Technologies and tools |
+| --- | --- |
+| Backend and APIs | Python, FastAPI, Flask, REST APIs, WebSockets, Pydantic, JWT, OAuth2 |
+| Databases and background work | PostgreSQL, MySQL, Redis, SQL, SQLAlchemy, Alembic, Celery |
+| Cloud and infrastructure | AWS EC2, RDS, S3, VPC, CloudFront, security groups, Linux, Docker, Docker Compose, Nginx |
+| Delivery and networking | CI/CD, GitHub Actions, TLS, DNS |
+| AI/ML integration | TensorFlow, CNN-based image analysis, Google Gemini API |
 
-- **Templatized Setup** – Fork and adapt your own version in minutes.
-- **Custom Theme System** – Try different themes (with light/dark variants) using a theme selection dropdown—**available only in the nightly build for preview purposes.**
-- **Production Behavior** – In the stable version, the theme dropdown is disabled; a single static theme is used based on your choice in `src/config/portfolio.config.ts`.
-- **Quality Enhancements** – Performance boosts and UI refinements all around.
+## Professional Experience
 
-<br/>
+### Backend Software Engineer - NexVolt Solutions
+**November 2025 - Present | Peshawar, Pakistan**
 
-## 📚 Tools and Tech Stack
+- Build and maintain Python APIs with FastAPI and PostgreSQL.
+- Deploy and operate applications using AWS services, Docker, and CI/CD workflows.
+- Work with Linux servers, Nginx, TLS, DNS, and security groups in production environments.
+- Use Celery and Redis for background processing and implement authentication with JWT and OAuth2.
 
-The portfolio leverages the following technologies:
-<div align="center">
-      <a href="https://astro.build/" title="Astro"><img src="https://skillicons.dev/icons?i=astro" alt="Astro" width="40"/></a>&emsp;
-      <a href="https://preactjs.com/" title="Preact.js"><img src="https://raw.githubusercontent.com/ChiragChrg/ChiragChrg.github.io/main/icons/preactjs.svg" alt="Preact.js" width="40"/></a>&emsp;
-      <a href="https://www.typescriptlang.org/docs/" title="TypeScript"><img src="https://skillicons.dev/icons?i=typescript" alt="TypeScript" width="40"/></a>&emsp;
-      <a href="https://tailwindcss.com/docs/installation" title="TailwindCSS"><img src="https://skillicons.dev/icons?i=tailwind" alt="TailwindCSS" width="40"/></a>&emsp;
-      <a href="https://greensock.com/docs/" title="GSAP"><img src="https://raw.githubusercontent.com/ChiragChrg/ChiragChrg.github.io/main/icons/gsap.svg" alt="GSAP" width="40"/></a>&emsp;
-</div>
+### Backend Engineering Intern - Wanclouds
+**June 2025 - September 2025 | Islamabad, Pakistan**
 
-## 🗼 LightHouse Audit
-![LightHouse Audit Preview](public/LightHouse_Audit.jpg)
+- Built backend services with FastAPI and Flask.
+- Designed MySQL schemas and managed database changes with Alembic.
+- Worked on authentication middleware, request validation, structured error handling, and background jobs with Celery and Redis.
 
-## 🛠️ Installation and Setup
+### Python Backend Intern - Go Jins
+**June 2024 - September 2024 | Remote**
 
-Follow these steps to run the project locally:
+- Developed REST endpoints for product workflows.
+- Implemented JWT authentication and authorization checks.
+- Designed SQL schemas, wrote queries, and integrated third-party APIs with validation and error handling.
 
-### Steps
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ChiragChrg/portfolio.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd portfolio
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
+## Featured Projects
 
-## 🌟 Features
+### Sports Platform API
 
-- **Optimized Performance**: Built with Astro for lightning-fast load times.
-- **Responsive Design**: Tailored for all devices using TailwindCSS.
-- **Interactive Animations**: Powered by GSAP for smooth transitions.
-- **SEO Friendly**: Enhanced visibility with Astro SEO integration.
-- **Dynamic Components**: Utilizes Preact for modular and reusable UI elements.
+A FastAPI and PostgreSQL backend for a sports community platform. It supports match discovery, invitations, messaging, real-time chat, uploads, and moderation, with AWS S3, Docker, and Nginx in its deployment stack.
 
-## 📄 License
+**Technologies:** Python, FastAPI, PostgreSQL, WebSockets, AWS S3, Docker, Nginx
 
-This project is licensed under the [MIT License](LICENSE).  
-You may use, copy, modify, and distribute this project for any purpose, provided that you:
+### [ImagifyAI](https://github.com/faizuet/genwalls)
 
-- Include the original copyright.
-- Retain the MIT license in all copies or substantial portions of the software.
+A FastAPI backend for AI image generation. It stores application data in PostgreSQL, applies authentication and usage limits, and processes generation jobs asynchronously with Celery and Redis. Its deployment uses AWS EC2, RDS, S3, CloudFront, and Docker.
 
-Attribution is appreciated but not required. If you use this project, consider giving visible credit is given to **[ChiragChrg](https://github.com/ChiragChrg)** somewhere within your project (e.g., in the README, footer, or documentation).
+**Technologies:** Python, FastAPI, PostgreSQL, Celery, Redis, Docker, AWS
 
-Proper attribution helps acknowledge the effort invested in this project and upholds the values of integrity, transparency, and the open‑source community.
+### [Looks Lab](https://github.com/faizuet/looks-lab-backend)
+
+A wellness application backend built with FastAPI and asynchronous SQLAlchemy. It integrates Google Gemini for AI features, Stripe for payment workflows, and AWS S3 for file storage.
+
+**Technologies:** Python, FastAPI, PostgreSQL, SQLAlchemy, Gemini, Stripe, AWS S3
+
+### [CarTrack API](https://github.com/faizuet/cartrack-api)
+
+A containerized FastAPI backend with PostgreSQL, JWT authentication, and role-based access control. Docker Compose and Nginx support its application environment.
+
+**Technologies:** Python, FastAPI, PostgreSQL, Docker Compose, Nginx, JWT, RBAC
+
+### [LiverCare AI](https://github.com/faizuet/livercare-ai)
+
+A machine learning project for liver steatosis analysis from ultrasound images. It combines a CNN pipeline with a FastAPI service and uses TensorFlow, NumPy, and Pandas.
+
+**Technologies:** Python, FastAPI, TensorFlow, NumPy, Pandas
+
+## Education
+
+**Bachelor of Science in Computer Science**
+University of Engineering and Technology, Mardan | 2021 - 2025
+
+## Portfolio Project
+
+This repository contains my personal portfolio website, built with Astro, Preact, Tailwind CSS, and GSAP. It includes responsive portfolio sections, project detail pages, a theme selector, and an EmailJS contact form.
+
+### Run locally
+
+```sh
+npm install
+npm run dev
+```
+
+Astro prints the local development URL in the terminal. To check and build the production site, then preview it locally:
+
+```sh
+npm run build
+npm run preview
+```
+
+The contact form needs the EmailJS values shown in `.env.example` to send messages. Copy that file to `.env` and configure the values in your EmailJS account before testing form delivery. The theme selector is enabled by default; set `PUBLIC_SHOW_THEME_MENU=false` to hide it.
+
+Before deploying to a custom domain, set `siteUrl` in `src/config/portfolio.config.ts` to that domain.
+
+## Profiles
+
+- **GitHub:** [github.com/faizuet](https://github.com/faizuet)
+- **LinkedIn:** [linkedin.com/in/muhammad-faiz-backend](https://linkedin.com/in/muhammad-faiz-backend)
+
+## Contact
+
+- **Email:** [faizuet7@gmail.com](mailto:faizuet7@gmail.com)
+- **Location:** Peshawar, Pakistan
