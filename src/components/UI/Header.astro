@@ -5,7 +5,7 @@ import ThemeButton from '@components/UI/ThemeButton.astro';
 
 const { config } = Astro.props;
 
-const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU === 'true';
+const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU !== 'false';
 ---
 
 <header id="header" class="hidden lg:block sticky top-0 max-w-[1800px] mx-auto z-50">
@@ -19,6 +19,7 @@ const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU === 'true';
         <nav class="Header_Nav relative tracking-wide flex gap-6">
             <a class="Fade_Down_Header" href="#about">ABOUT</a>
             <a class="Fade_Down_Header" href="#skills">SKILLS</a>
+            <a class="Fade_Down_Header" href="#experience">EXPERIENCE</a>
             <a class="Fade_Down_Header" href="#projects">PROJECTS</a>
             <a class="Fade_Down_Header" href="#contact">CONTACT</a>
         </nav>
@@ -30,7 +31,7 @@ const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU === 'true';
             <a
                 class="Fade_Down_Header Header_ActionBtn relative overflow-hidden rounded-sm flex_center"
                 href={config.actionButton.url}
-                target="_blank"
+                download="Muhammad-Faiz-Resume.pdf"
             >
                 <div class="flex_center gap-2">
                     <p>{config.actionButton.text}</p>
@@ -47,6 +48,7 @@ const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU === 'true';
         '#home': document.getElementById('home'),
         '#about': document.getElementById('about'),
         '#skills': document.getElementById('skills'),
+        '#experience': document.getElementById('experience'),
         '#projects': document.getElementById('projects'),
         '#contact': document.getElementById('contact'),
     };

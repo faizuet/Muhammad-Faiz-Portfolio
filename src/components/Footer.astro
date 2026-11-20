@@ -30,29 +30,30 @@ const { config } = Astro.props;
     </svg>
 
     <div class="w-full flex_center flex-col gap-2">
-        <Image src={config.logo} alt="LogoIcon" width={80} height={80} />
+        <Image src={config.logo} alt="Muhammad Faiz monogram" width={80} height={80} />
         <span>{config.title}</span>
+        <div class="mt-4 flex items-center justify-center gap-8">
+            {
+                config.links &&
+                    config.links
+                        .filter((link: { label: string }) => link.label === "GitHub" || link.label === "LinkedIn")
+                        .map(
+                            (link: { url: string; label: string; icon: string }) => (
+                                <a
+                                    href={link.url}
+                                    title={link.label}
+                                    aria-label={link.label}
+                                    target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+                                    rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                                    class="w-[30px] h-[30px] flex items-center justify-center"
+                                >
+                                    <Fragment set:html={link.icon} />
+                                </a>
+                            ),
+                        )
+            }
+        </div>
     </div>
 
-    <div class="grid grid-cols-3 lg:grid-cols-6 gap-x-20 gap-y-10 lg:gap-20">
-        {
-            config.links &&
-                config.links.map(
-                    (link: { url: string; label: string; icon: string }) => (
-                        <a
-                            href={link.url}
-                            title={link.label}
-                            aria-label={link.label}
-                            target="_blank"
-                            rel="noreferrer"
-                            class="w-[30px] h-[30px] flex items-center justify-center"
-                        >
-                            <Fragment set:html={link.icon} />
-                        </a>
-                    ),
-                )
-        }
-    </div>
-
-    <span>© Copyright 2023-{currentYear} ChiragChrg</span>
+    <span>© {currentYear} Muhammad Faiz</span>
 </footer>

@@ -1,0 +1,39 @@
+---
+import { CenterTitle } from "@components/UI";
+
+const roles = [
+    { title: "Backend Software Engineer", company: "NexVolt Solutions", period: "November 2025 – Present", location: "Peshawar", details: ["Built and maintained 20+ REST API endpoints.", "Improved a database query from 3.2 seconds to 180 milliseconds.", "Worked with AWS, PostgreSQL, Celery, Redis, and CI/CD workflows."] },
+    { title: "Backend Engineering Intern", company: "Wanclouds", period: "June 2025 – September 2025", location: "Islamabad", details: ["Contributed to backend engineering work during the internship.", "Recognized as a top-performing intern."] },
+    { title: "Python Backend Intern", company: "Go Jins", period: "June 2024 – September 2024", location: "Remote", details: ["Completed a Python backend internship."] },
+];
+---
+
+<section id="experience" class="w-full py-4 pt-14 bg-background">
+    <CenterTitle title="Professional Experience" color="primary" />
+    <div class="mx-auto max-w-4xl px-4 space-y-5">
+        {roles.map((role) => (
+            <article class="Fade_Up rounded-xl border border-primaryLiteAlt bg-footerAltLite/60 p-5 md:p-7">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                    <div><h3 class="font-ubuntu text-xl">{role.title}</h3><p class="gradientText">{role.company}</p></div>
+                    <p class="text-sm text-center md:text-right">{role.period}<br />{role.location}</p>
+                </div>
+                <ul class="mt-4 list-disc pl-5 space-y-2">{role.details.map((detail) => <li>{detail}</li>)}</ul>
+            </article>
+        ))}
+    </div>
+    <div id="education" class="mx-auto max-w-4xl px-4 pt-10">
+        <h3 class="font-ubuntu text-2xl mb-4">Education</h3>
+        <article class="Fade_Up rounded-xl border border-secondaryLiteAlt bg-footerAltLite/60 p-5 md:p-7">
+            <h4 class="font-ubuntu text-xl">Bachelor of Science in Computer Science</h4>
+            <p>University of Engineering and Technology, Mardan</p>
+            <p class="text-sm mt-2">2021 – 2025</p>
+        </article>
+    </div>
+    <div id="certifications" class="mx-auto max-w-4xl px-4 pt-10">
+        <h3 class="font-ubuntu text-2xl mb-4">Certifications</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <li class="Fade_Up rounded-xl border border-secondaryLiteAlt bg-footerAltLite/60 p-5">Backend Engineering Internship Completion — Wanclouds, October 2025</li>
+            <li class="Fade_Up rounded-xl border border-secondaryLiteAlt bg-footerAltLite/60 p-5">Web Developer Internship Completion — Go Jins, September 2024</li>
+        </ul>
+    </div>
+</section>

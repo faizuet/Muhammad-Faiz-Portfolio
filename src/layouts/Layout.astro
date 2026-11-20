@@ -14,17 +14,11 @@ const { config } = Astro.props;
 const personStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': `${config.site.siteUrl}#person`,
-    name: 'Chirag Chrg',
-    url: config.site.siteUrl,
-    jobTitle: 'Fullstack Software Engineer',
+    name: 'Muhammad Faiz',
+    ...(config.site.siteUrl ? { '@id': `${config.site.siteUrl}#person`, url: config.site.siteUrl } : {}),
+    jobTitle: 'Backend and Cloud Engineer',
     image: config.site.avatar,
-    sameAs: [
-        'https://github.com/ChiragChrg',
-        'https://www.linkedin.com/in/chiragchrg/',
-        'https://x.com/ChrgChirag',
-        'https://www.instagram.com/chiragchrg/',
-    ],
+    sameAs: ['https://github.com/faizuet', 'https://linkedin.com/in/muhammad-faiz-backend'],
 };
 ---
 
@@ -36,10 +30,9 @@ const personStructuredData = {
         <meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#000" />
         <meta name="robots" content="index, follow" />
-        <meta name="google-site-verification" content={config.site.googleSiteVerification} />
         <meta name="keywords" content={config.site.keywords} />
-        <meta name="author" content="ChiragChrg" />
-        <meta name="publisher" content="ChiragChrg" />
+        <meta name="author" content="Muhammad Faiz" />
+        <meta name="publisher" content="Muhammad Faiz" />
         <link rel="manifest" href="/manifest.json" />
 
         <!-- Preload CSS Styles -->
@@ -49,43 +42,38 @@ const personStructuredData = {
         <SEO
             title=`${config.site.title}`
             description=`${config.site.description}`
-            canonical=`${config.site.siteUrl}`
-            openGraph={{
+            canonical={config.site.siteUrl || null}
+            openGraph={config.site.siteUrl ? {
                 basic: {
                     title: config.site.title,
                     type: 'website',
-                    image: config.site.avatar,
-                    url: config.site.siteUrl,
+                    image: new URL(config.site.avatar, config.site.siteUrl).toString(),
+                    ...(config.site.siteUrl ? { url: config.site.siteUrl } : {}),
                 },
-            }}
+            } : undefined}
             twitter={{
                 title: config.site.title,
                 description: config.site.description,
                 card: 'summary',
-                site: '@ChrgChirag',
-                creator: '@ChrgChirag',
-                image: config.site.avatar,
+                ...(config.site.siteUrl ? { image: new URL(config.site.avatar, config.site.siteUrl).toString() } : {}),
             }}
             extend={{
                 link: [
-                    { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+                    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
                     {
                         rel: 'shortcut',
-                        type: 'image/png',
-                        href: '/favicon.png',
+                        type: 'image/svg+xml',
+                        href: '/favicon.svg',
                     },
                     {
                         rel: 'apple-touch-icon',
-                        type: 'image/png',
-                        href: '/favicon.png',
+                        type: 'image/svg+xml',
+                        href: '/favicon.svg',
                     },
                 ],
-                meta: [
-                    {
-                        name: 'twitter:url',
-                        content: config.site.siteUrl,
-                    },
-                ],
+                meta: config.site.siteUrl
+                    ? [{ name: 'twitter:url', content: config.site.siteUrl }]
+                    : [],
             }}
         />
 

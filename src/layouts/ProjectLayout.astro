@@ -11,22 +11,16 @@ import '@styles/cursor.css';
 
 const { title, description, canonical, ogImage, config } = Astro.props;
 
-const canonicalUrl =
-    canonical ||
-    new URL(
-        `projects/${title.replace(' | ChiragChrg', '').replaceAll(' ', '-').toLowerCase()}`,
-        config.site.siteUrl,
-    ).toString();
+const canonicalUrl = canonical;
 const pageDescription = description || config.site.description;
 const pageImage = ogImage || config.site.avatar;
 
 const projectStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': `${canonicalUrl}#webpage`,
     name: title,
     description: pageDescription,
-    url: canonicalUrl,
+    ...(canonicalUrl ? { '@id': `${canonicalUrl}#webpage`, url: canonicalUrl } : {}),
     image: pageImage,
     inLanguage: 'en',
 };
@@ -40,9 +34,8 @@ const projectStructuredData = {
         <meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#000" />
         <meta name="robots" content="index, follow" />
-        <meta name="google-site-verification" content={config.site.googleSiteVerification} />
         <meta name="keywords" content={config.site.keywords} />
-        <meta name="author" content="ChiragChrg" />
+        <meta name="author" content="Muhammad Faiz" />
         <link rel="manifest" href="/manifest.json" />
 
         <!-- Preload CSS Styles -->
@@ -53,43 +46,38 @@ const projectStructuredData = {
         <SEO
             title={title}
             description={pageDescription}
-            canonical={canonicalUrl}
-            openGraph={{
+            canonical={canonicalUrl ?? null}
+            openGraph={canonicalUrl ? {
                 basic: {
                     title: `${title}`,
                     type: 'website',
-                    image: pageImage,
-                    url: canonicalUrl,
+                    image: new URL(pageImage, canonicalUrl).toString(),
+                    ...(canonicalUrl ? { url: canonicalUrl } : {}),
                 },
-            }}
+            } : undefined}
             twitter={{
                 title: `${title}`,
                 description: pageDescription,
                 card: 'summary',
-                site: '@ChrgChirag',
-                creator: '@ChrgChirag',
-                image: pageImage,
+                ...(canonicalUrl ? { image: new URL(pageImage, canonicalUrl).toString() } : {}),
             }}
             extend={{
                 link: [
-                    { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+                    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
                     {
                         rel: 'shortcut',
-                        type: 'image/png',
-                        href: '/favicon.png',
+                        type: 'image/svg+xml',
+                        href: '/favicon.svg',
                     },
                     {
                         rel: 'apple-touch-icon',
-                        type: 'image/png',
-                        href: '/favicon.png',
+                        type: 'image/svg+xml',
+                        href: '/favicon.svg',
                     },
                 ],
-                meta: [
-                    {
-                        name: 'twitter:url',
-                        content: canonicalUrl,
-                    },
-                ],
+                meta: canonicalUrl
+                    ? [{ name: 'twitter:url', content: canonicalUrl }]
+                    : [],
             }}
         />
 

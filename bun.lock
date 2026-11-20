@@ -5,9 +5,9 @@
     "": {
       "name": "portfolio",
       "dependencies": {
+        "@emailjs/browser": "^4.4.1",
         "@astrojs/check": "0.9.9",
         "@astrojs/preact": "5.1.2",
-        "@emailjs/browser": "^4.4.1",
         "@studio-freight/lenis": "^1.0.42",
         "@tailwindcss/vite": "^4.2.4",
         "astro": "6.2.1",

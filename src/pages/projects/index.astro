@@ -6,7 +6,7 @@ const { themeConfig, siteConfig, headerConfig, footerConfig } = await import(
     '@/config/portfolio.config'
 );
 
-const projectsCanonicalUrl = new URL('projects', siteConfig.siteUrl).toString();
+const projectsCanonicalUrl = siteConfig.siteUrl ? new URL('projects', siteConfig.siteUrl).toString() : undefined;
 
 // Lazy loading ProjectInfo
 const ProjectInfo = import('@/config/ProjectsList');
@@ -14,8 +14,8 @@ const { PROJECTS_LIST } = await ProjectInfo;
 ---
 
 <ProjectLayout
-    title="Projects | ChiragChrg"
-    description="Browse selected web engineering projects by Chirag Chrg, with architecture highlights, features, and live demos."
+    title="Projects | Muhammad Faiz"
+    description="Selected backend, cloud, and AI/ML integration projects by Muhammad Faiz."
     canonical={projectsCanonicalUrl}
     config={{
         theme: themeConfig,
@@ -34,7 +34,7 @@ const { PROJECTS_LIST } = await ProjectInfo;
             )
         }
 
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(500px,1fr))] gap-x-6 gap-y-3 mt-4">
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] gap-x-6 gap-y-3 mt-4">
             {
                 PROJECTS_LIST?.map((project) => {
                     if (project?.isHidden) return;

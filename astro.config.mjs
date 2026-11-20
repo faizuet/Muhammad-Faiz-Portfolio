@@ -14,6 +14,8 @@ export default defineConfig({
       CSS: true,
       HTML: true,
       JavaScript: true,
+      // Astro already optimizes image assets; avoid invoking the optional native Sharp binary.
+      Image: false,
     })
   ],
   vite: {
