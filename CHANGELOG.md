@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0](https://github.com/faizuet/Muhammad-Faiz-Portfolio/compare/v1.1.1...v1.2.0) (2026-11-25)
+
+### ✨ Features
+
+* update the portfolio from the latest resume and portrait ([a13db23](https://github.com/faizuet/Muhammad-Faiz-Portfolio/commit/a13db231bd4517b09158ac5854f03ab2ae0fa9e5))
+
 ## [1.1.1](https://github.com/faizuet/Muhammad-Faiz-Portfolio/compare/v1.1.0...v1.1.1) (2026-11-20)
 
 ### 🐛 Bug Fixes
