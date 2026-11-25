@@ -1,3 +1,7 @@
+export function getProjectSlug(name: string) {
+    return name.replaceAll(" ", "-").toLowerCase();
+}
+
 export interface IProject {
     isHidden: boolean;
     name: string;
@@ -13,25 +17,25 @@ export const PROJECTS_LIST: IProject[] = [
     {
         isHidden: false,
         name: "ImagifyAI",
-        shortDescription: "An AI image generation backend with authentication, usage limits, and asynchronous job processing.",
-        description: "A FastAPI backend for AI image generation. The service handles authenticated requests and usage limits, queues generation work with Celery and Redis, and stores application data in PostgreSQL. The deployment uses Docker and AWS services including EC2, RDS, S3, and CloudFront.",
-        technologies: ["Python", "FastAPI", "PostgreSQL", "Celery", "Redis", "Docker", "AWS"],
+        shortDescription: "A cloud-deployed image generation platform with asynchronous job processing.",
+        description: "A FastAPI platform for image generation. Background workers handle long-running jobs without blocking API responses. It is deployed on AWS with EC2, RDS, S3, and CloudFront, behind Nginx, and uses JWT and OAuth2 for authentication. PostgreSQL stores application data, with Redis, Celery, and Docker supporting processing and deployment. The platform maintained 99% uptime in production.",
+        technologies: ["Python", "FastAPI", "PostgreSQL", "Redis", "Celery", "Docker", "AWS", "Nginx"],
         features: [
-            { title: "Asynchronous jobs", description: "Celery and Redis handle image generation work outside the request cycle." },
-            { title: "Request controls", description: "Authentication and usage limits protect access to generation endpoints." },
-            { title: "Cloud deployment", description: "The application uses AWS compute, database, object storage, and content delivery services." },
+            { title: "Asynchronous processing", description: "Background workers handle long-running generation jobs without blocking API responses." },
+            { title: "Cloud deployment", description: "The platform runs on AWS EC2, RDS, S3, and CloudFront, behind Nginx, and maintained 99% uptime in production." },
+            { title: "Authentication", description: "JWT and OAuth2 protect access to the platform." },
         ],
     },
     {
         isHidden: false,
         name: "Sports Platform API",
-        shortDescription: "A backend API supporting match discovery, invitations, messaging, and real-time chat.",
-        description: "A FastAPI and PostgreSQL backend for a sports community platform. It supports match discovery, invitations, chat, message history, pagination, uploads, typing indicators, read receipts, and moderation. The deployment uses AWS S3, Docker, and Nginx.",
-        technologies: ["Python", "FastAPI", "PostgreSQL", "WebSockets", "AWS S3", "Docker", "Nginx"],
+        shortDescription: "A real-time backend on AWS for match creation, invitations, joining, and moderation.",
+        description: "A FastAPI and PostgreSQL backend deployed on AWS. WebSockets support the match lifecycle from creation and invitations through joining and moderation. The API is rate-limited, integrates AWS S3, and sits behind Nginx. A role-based admin panel supports operational moderation.",
+        technologies: ["Python", "FastAPI", "PostgreSQL", "WebSockets", "AWS S3", "Nginx"],
         features: [
-            { title: "Real-time communication", description: "WebSockets support chat, typing indicators, and read receipts." },
-            { title: "Match discovery", description: "Users can discover matches and exchange invitations." },
-            { title: "Messaging and moderation", description: "Message history, pagination, uploads, and moderation are supported by the API." },
+            { title: "Real-time lifecycle", description: "WebSockets cover match creation, invitations, joining, and moderation." },
+            { title: "API delivery", description: "Rate-limited, S3-integrated APIs are served behind Nginx." },
+            { title: "Operational moderation", description: "A role-based admin panel supports moderation of the platform." },
         ],
     },
     {

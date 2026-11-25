@@ -41,7 +41,7 @@ const iconId = `dropdownIcon${idPrefix}`;
     <!-- Dropdown List -->
     <div
         id={dropdownId}
-        class="absolute top-full left-0 mt-2 min-w-32 bg-background/70 backdrop-blur-md border border-white/10 rounded-lg shadow-lg opacity-0 invisible transform -translate-y-2.5 transition-all duration-200 z-130 max-h-64 overflow-y-auto overscroll-contain"
+        class="theme-dropdown-menu absolute top-full left-0 mt-2 min-w-32 bg-background/70 backdrop-blur-md border border-white/10 rounded-lg shadow-lg opacity-0 invisible transform -translate-y-2.5 transition-all duration-200 z-130 max-h-64 overflow-y-auto overscroll-contain"
         role="menu"
         aria-labelledby={btnId}
     >
@@ -275,7 +275,7 @@ const iconId = `dropdownIcon${idPrefix}`;
 
 <style>
     /* Ensure dropdown has proper scrolling */
-    #themeDropdown {
+    .theme-dropdown-menu {
         overflow-y: auto !important;
         overflow-x: hidden;
         scrollbar-width: thin;
@@ -285,22 +285,22 @@ const iconId = `dropdownIcon${idPrefix}`;
     }
 
     /* Custom scrollbar for webkit browsers */
-    #themeDropdown::-webkit-scrollbar {
+    .theme-dropdown-menu::-webkit-scrollbar {
         width: 6px;
     }
 
-    #themeDropdown::-webkit-scrollbar-track {
+    .theme-dropdown-menu::-webkit-scrollbar-track {
         background: transparent;
         border-radius: 3px;
     }
 
-    #themeDropdown::-webkit-scrollbar-thumb {
+    .theme-dropdown-menu::-webkit-scrollbar-thumb {
         background: rgba(255, 255, 255, 0.3);
         border-radius: 3px;
         transition: background 0.2s ease;
     }
 
-    #themeDropdown::-webkit-scrollbar-thumb:hover {
+    .theme-dropdown-menu::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.5);
     }
 

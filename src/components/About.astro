@@ -5,17 +5,17 @@ import { SectionTitle } from "@components/UI";
 const { config } = Astro.props;
 ---
 
-<section id="about" class="w-full min-h-screen py-4 pt-14 bg-background">
+<section id="about" class="w-full min-h-screen py-4 pt-14">
     <SectionTitle
         title="About Me"
         color="primary"
-        className="h-screen flex flex-col justify-center"
+        className="lg:min-h-[70vh] flex flex-col justify-center"
     >
         <div class="flex_center flex-col lg:flex-row w-full h-full py-10 gap-8">
             <Image
                 src={config.aboutAvatar}
                 alt="Muhammad Faiz in a professional developer workspace"
-                class="Fade_Up rounded-full scale-x-[-1] lg:mx-14"
+                class="Fade_Up rounded-full object-cover object-[center_30%] w-[220px] h-[220px] sm:w-[250px] sm:h-[250px] lg:mx-14"
                 width={250}
                 height={250}
                 loading="lazy"

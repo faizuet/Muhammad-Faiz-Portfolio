@@ -12,11 +12,11 @@ const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU !== 'false';
     <div
         class="flex justify-between items-center w-full px-6 py-2 headerGradient backdrop-blur-[2px]"
     >
-        <a href="#home" class="Fade_Down_Header font-satisfy font-bold text-[2em]">
+        <a href="#home" class="Fade_Down_Header font-satisfy font-bold text-[1.7em] xl:text-[2em] leading-none whitespace-nowrap shrink-0">
             <span class="gradientText w-fit">{config.logotext}</span>
         </a>
 
-        <nav class="Header_Nav relative tracking-wide flex gap-6">
+        <nav class="Header_Nav relative tracking-wide flex gap-3 xl:gap-6">
             <a class="Fade_Down_Header" href="#about">ABOUT</a>
             <a class="Fade_Down_Header" href="#skills">SKILLS</a>
             <a class="Fade_Down_Header" href="#experience">EXPERIENCE</a>
@@ -29,7 +29,7 @@ const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU !== 'false';
             <ThemeButton className="Fade_Down_Header" />
 
             <a
-                class="Fade_Down_Header Header_ActionBtn relative overflow-hidden rounded-sm flex_center"
+                class="Fade_Down_Header Header_ActionBtn relative overflow-hidden rounded-sm flex_center whitespace-nowrap shrink-0"
                 href={config.actionButton.url}
                 download="Muhammad-Faiz-Resume.pdf"
             >
@@ -44,8 +44,8 @@ const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU !== 'false';
 
 <script is:inline type="module">
     const headerElement = document.getElementById('header');
+
     const sectionsList = {
-        '#home': document.getElementById('home'),
         '#about': document.getElementById('about'),
         '#skills': document.getElementById('skills'),
         '#experience': document.getElementById('experience'),
@@ -53,17 +53,16 @@ const showThemeDropdown = import.meta.env.PUBLIC_SHOW_THEME_MENU !== 'false';
         '#contact': document.getElementById('contact'),
     };
 
-    const headerHeight = headerElement.offsetHeight;
-
-    // Set Active class on section scroll
     const handleScroll = () => {
+        const marker = (headerElement?.offsetHeight || 0) + 64;
+
         for (const [linkHref, section] of Object.entries(sectionsList)) {
-            if (!section) return;
+            if (!section) continue;
 
             const rect = section.getBoundingClientRect();
             const link = document.querySelector(`#header a[href="${linkHref}"]`);
 
-            if (link && headerElement && rect.top <= headerHeight && rect.bottom >= headerHeight) {
+            if (link && headerElement && rect.top <= marker && rect.bottom >= marker) {
                 link?.classList.add('active');
             } else {
                 link?.classList.remove('active');

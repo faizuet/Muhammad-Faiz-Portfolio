@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # editor directories and files
 .vscode/
+
+# local browser verification artifacts
+.browser-profile/

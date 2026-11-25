@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-import { generateThemeVariables } from "../src/utils/colorUtils.ts";
+import { generateThemeVariables, hexToHsl } from "../src/utils/colorUtils.ts";
 import fs from 'fs';
 import path from 'path';
 
@@ -161,9 +161,6 @@ async function generateThemeConstants() {
 
     for (const themeName of Object.keys(COLOR_THEME) as ThemeOptionType[]) {
         const config = COLOR_THEME[themeName].light; // Use light theme colors for preview
-
-        // Convert hex colors to HSL during build time
-        const { hexToHsl } = await import("../src/utils/colorUtils.ts");
 
         try {
             const primaryHsl = await hexToHsl(config.primary);

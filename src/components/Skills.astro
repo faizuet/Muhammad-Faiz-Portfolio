@@ -2,22 +2,22 @@
 import { CenterTitle, SkillTitle } from "@components/UI";
 
 const groups = [
-    { title: "Backend & APIs", skills: ["Python", "FastAPI", "Flask", "REST APIs", "WebSockets", "JWT / OAuth2"] },
-    { title: "Databases", skills: ["PostgreSQL", "MySQL", "Redis", "SQLAlchemy", "Alembic"] },
-    { title: "Cloud & Infrastructure", skills: ["AWS", "Linux", "Docker", "Nginx", "CI/CD", "GitHub Actions"] },
-    { title: "AI / ML Integration", skills: ["AI/ML integration"] },
+    { title: "Cloud Platforms", skills: ["AWS EC2", "RDS", "S3", "VPC", "CloudFront", "IAM", "Security Groups"] },
+    { title: "Infrastructure", skills: ["Ubuntu Linux", "Docker", "Nginx", "CI/CD", "SSH", "DNS", "SSL/TLS", "TCP/IP"] },
+    { title: "Backend & APIs", skills: ["Python", "FastAPI", "Flask", "SQLAlchemy", "Pydantic", "REST APIs", "JWT", "WebSockets"] },
+    { title: "Data & Tools", skills: ["PostgreSQL", "MySQL", "SQLite", "SQL", "Redis", "Celery", "Alembic", "Git"] },
 ];
 ---
 
-<section id="skills" class="w-full min-h-screen py-4 pt-14 bg-background">
+<section id="skills" class="w-full min-h-screen py-4 pt-14">
     <CenterTitle title="Technical Skills" color="primary" />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 px-4 md:px-8">
         {groups.map((group) => (
-            <div class="Fade_Up flex flex-col gap-4 p-4 md:p-6 rounded-xl border border-primaryLiteAlt bg-footerAltLite/60">
+            <div class="Fade_Up skill-card flex flex-col gap-4 p-4 md:p-6 rounded-xl border border-primaryLiteAlt bg-footerAltLite/60">
                 <SkillTitle title={group.title} color="primary" />
                 <ul class="flex flex-wrap justify-center gap-3">
                     {group.skills.map((skill) => (
-                        <li class="rounded-full border border-primaryLiteAlt px-4 py-2 text-sm md:text-base">{skill}</li>
+                        <li class="skill-chip rounded-full border border-primaryLiteAlt px-4 py-2 text-sm md:text-base">{skill}</li>
                     ))}
                 </ul>
             </div>

@@ -1,21 +1,16 @@
 ---
 import { SectionTitle, ProjectCard } from '@/components/UI';
 import { ProjectLayout } from '@layouts/index';
-
-const { themeConfig, siteConfig, headerConfig, footerConfig } = await import(
-    '@/config/portfolio.config'
-);
+import { themeConfig, siteConfig, headerConfig, footerConfig } from '@/config/portfolio.config';
+import { PROJECTS_LIST } from '@/config/ProjectsList';
 
 const projectsCanonicalUrl = siteConfig.siteUrl ? new URL('projects', siteConfig.siteUrl).toString() : undefined;
-
-// Lazy loading ProjectInfo
-const ProjectInfo = import('@/config/ProjectsList');
-const { PROJECTS_LIST } = await ProjectInfo;
+const visibleProjects = PROJECTS_LIST.filter((project) => !project.isHidden);
 ---
 
 <ProjectLayout
     title="Projects | Muhammad Faiz"
-    description="Selected backend, cloud, and AI/ML integration projects by Muhammad Faiz."
+    description="Selected backend and cloud projects by Muhammad Faiz."
     canonical={projectsCanonicalUrl}
     config={{
         theme: themeConfig,
@@ -27,8 +22,8 @@ const { PROJECTS_LIST } = await ProjectInfo;
     <SectionTitle title="Projects" color="secondary" className="mb-120">
         <!-- Empty Projects Grid -->
         {
-            PROJECTS_LIST.length === 0 && (
-                <p class="text-center text-muted-foreground mt-10">
+            visibleProjects.length === 0 && (
+                <p class="text-center mt-10">
                     No projects to display at the moment. Please check back later.
                 </p>
             )
@@ -36,11 +31,7 @@ const { PROJECTS_LIST } = await ProjectInfo;
 
         <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] gap-x-6 gap-y-3 mt-4">
             {
-                PROJECTS_LIST?.map((project) => {
-                    if (project?.isHidden) return;
-
-                    return <ProjectCard project={project} />;
-                })
+                visibleProjects.map((project) => <ProjectCard project={project} />)
             }
         </div>
     </SectionTitle>

@@ -181,8 +181,6 @@ export const generateThemeVariables = async (
         primaryLiteAlt: 'hsla(var(--primary), 0.3)',
         secondaryLite: 'hsla(var(--secondary), 0.6)',
         secondaryLiteAlt: 'hsla(var(--secondary), 0.3)',
-        accentLite: 'hsla(var(--accent), 0.6)',
-        accentLiteAlt: 'hsla(var(--accent), 0.3)',
 
         // Header colors
         headerGradient: `linear-gradient(180deg, ${isDark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)'}, transparent)`,
@@ -193,23 +191,13 @@ export const generateThemeVariables = async (
         orbitGradientAlt: `conic-gradient(${isDark ? textHsl : `hsl(var(--primary))`}, hsl(var(--primary)), hsl(var(--secondary)), transparent, transparent)`,
 
         // Skill colors
-        SkillGradient: `linear-gradient(45deg, hsla(${p.h}, 60%, ${isDark ? 10 : 80}%, 0.5), hsla(${s.h}, 50%, ${isDark ? 10 : 50}%, 0.2))`,
         SkillGradientAlt: `linear-gradient(-135deg, hsla(${p.h}, 50%, ${isDark ? 15 : 55}%, 0.5), hsla(${s.h}, 50%, ${isDark ? 15 : 50}%, 0.2))`,
 
         // Gradients colors
         gradient: `linear-gradient(to right, hsl(var(--secondary)), hsl(var(--primary)), hsl(var(--primary)), hsl(var(--secondary)))`,
-        gradientLite: `linear-gradient(45deg, var(--primaryLite), var(--secondaryLite))`,
-
-        // Card colors
-        cardGradient: `linear-gradient(45deg, hsl(${backgroundColor.h}, ${backgroundColor.s}%, ${isDark ? 1 : 95}%), var(--primaryLiteAlt))`,
-        cardGradientAlt: `linear-gradient(-135deg, hsl(${backgroundColor.h}, ${backgroundColor.s}%, ${Math.max(5, backgroundColor.l * 0.15)}%), var(--primaryLiteAlt))`,
 
         // Misc colors
         socialIconColor: isDark ? textHsl : `hsl(var(--primary))`,
-        contactSocialColor: `hsla(${textColor.h}, ${textColor.s}%, ${textColor.l}%, 0.4)`,
-        imgOverlayGradient: `radial-gradient(circle, transparent, var(--background) 95%), linear-gradient(180deg, var(--background), transparent 25%), linear-gradient(0deg, var(--background), transparent 25%)`,
-        miscCardGradient: `linear-gradient(-45deg, hsl(${backgroundColor.h}, ${backgroundColor.s}%, ${Math.max(1, backgroundColor.l * 0.1)}%), var(--primaryLiteAlt))`,
-        overlayGradient: `radial-gradient(farthest-corner at 100% 0%, hsla(${backgroundColor.h}, ${backgroundColor.s}%, ${footerSvgBLightness}%, 0.5), transparent)`,
         LinkBtnGradient: `linear-gradient(-135deg, hsla(${backgroundColor.h}, ${backgroundColor.s}%, ${footerSvgALightness}%, 0.8), hsla(${backgroundColor.h}, ${backgroundColor.s}%, ${footerLightness}%, 0.6))`,
 
         // Cursor colors

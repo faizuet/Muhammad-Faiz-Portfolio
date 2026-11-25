@@ -35,22 +35,20 @@ const { config } = Astro.props;
         <div class="mt-4 flex items-center justify-center gap-8">
             {
                 config.links &&
-                    config.links
-                        .filter((link: { label: string }) => link.label === "GitHub" || link.label === "LinkedIn")
-                        .map(
-                            (link: { url: string; label: string; icon: string }) => (
-                                <a
-                                    href={link.url}
-                                    title={link.label}
-                                    aria-label={link.label}
-                                    target={link.url.startsWith("mailto:") ? undefined : "_blank"}
-                                    rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                                    class="w-[30px] h-[30px] flex items-center justify-center"
-                                >
-                                    <Fragment set:html={link.icon} />
-                                </a>
-                            ),
-                        )
+                    config.links.map(
+                        (link: { url: string; label: string; icon: string }) => (
+                            <a
+                                href={link.url}
+                                title={link.label}
+                                aria-label={link.label}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="w-[30px] h-[30px] flex items-center justify-center"
+                            >
+                                <Fragment set:html={link.icon} />
+                            </a>
+                        ),
+                    )
             }
         </div>
     </div>

@@ -18,23 +18,6 @@ gsap.defaults({
 
 //#region Transitions Config
 const transitions = {
-    SpringUp: {
-        from: {
-            opacity: 0,
-            scale: 0.75,
-        },
-        to: {
-            ease: "elastic.out(0.6,0.14)",
-            opacity: 1,
-            scale: 1,
-            duration: 4.25,
-            delay: 1.25,
-            stagger: 0.15,
-            scrollTrigger: {
-                trigger: '.Spring_Up',
-            }
-        }
-    },
     Stagger: {
         from: {
             opacity: 0,
@@ -61,20 +44,6 @@ const transitions = {
             stagger: 0.15,
         }
     },
-    FadeDown: {
-        from: {
-            opacity: 0,
-            y: -50,
-        },
-        to: {
-            opacity: 1,
-            y: 0,
-            delay: 0.25,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power2.out",
-        }
-    },
     FadeDownHeader: {
         from: {
             opacity: 0,
@@ -99,24 +68,18 @@ const transitions = {
             stagger: 0.125,
             ease: "power1.out"
         }
-    },
-    MobileLink: {
-        from: {
-            y: 100,
-            opacity: 0,
-        },
-        to: {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            delay: 0.25,
-            stagger: 0.1,
-            ease: "power1.out"
-        }
     }
 }
 //#endregion
 
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (prefersReducedMotion) {
+    document.querySelectorAll<HTMLElement>(".Fade_Stagger, .Project_Stagger, .Fade_Up, .Fade_Down_Header, .Fade_In, .Spring_Up, #avatarImage").forEach((element) => {
+        element.style.opacity = "1";
+        element.style.transform = "none";
+    });
+} else {
 //#region Hero Orbit Animation
 const avatar = document.querySelector('#avatarImage') as HTMLElement | null;
 const trails = [
@@ -125,6 +88,13 @@ const trails = [
     document.querySelector('.Trail3'),
     document.querySelector('.Trail4')
 ] as (HTMLElement | null)[];
+
+const TRAIL_SPIN = [
+    { duration: 6, direction: 1 },
+    { duration: 8, direction: -1 },
+    { duration: 10, direction: 1 },
+    { duration: 12, direction: -1 }
+];
 
 const allSpringUp = [avatar, ...trails].filter(Boolean) as HTMLElement[];
 
@@ -155,13 +125,7 @@ if (allSpringUp.length) {
                         this.targets().forEach((el: HTMLElement, i: number) => {
                             if (i === 0) return;
 
-                            const trailConfig: { duration: number; direction: number }[] = [
-                                { duration: 6, direction: 1 },
-                                { duration: 8, direction: -1 },
-                                { duration: 10, direction: 1 },
-                                { duration: 12, direction: -1 }
-                            ];
-                            const { duration, direction } = trailConfig[i - 1];
+                            const { duration, direction } = TRAIL_SPIN[i - 1];
                             gsap.to(el, {
                                 rotation: `+=${360 * direction}`,
                                 duration,
@@ -239,13 +203,7 @@ function triggerSpringUp() {
             this.targets().forEach((el: HTMLElement, i: number) => {
                 if (i === 0) return;
 
-                const trailConfig: { duration: number; direction: number }[] = [
-                    { duration: 6, direction: 1 },
-                    { duration: 8, direction: -1 },
-                    { duration: 10, direction: 1 },
-                    { duration: 12, direction: -1 }
-                ];
-                const { duration, direction } = trailConfig[i - 1];
+                const { duration, direction } = TRAIL_SPIN[i - 1];
                 gsap.to(el, {
                     rotation: `+=${360 * direction}`,
                     duration,
@@ -355,15 +313,6 @@ ScrollTrigger.batch(".Fade_Up", {
     once: true
 });
 
-// FadeDown Animation
-ScrollTrigger.batch(".Fade_Down", {
-    start: "top bottom-=100px",
-    onEnter: (elements) => {
-        handleBatchAnimation(elements, transitions.FadeDown.from, transitions.FadeDown.to);
-    },
-    once: true
-});
-
 // FadeIn Animation
 ScrollTrigger.batch(".Fade_In", {
     onEnter: (elements) => {
@@ -383,88 +332,6 @@ if (headerFadeDownElements.length > 0) {
 // #endregion
 
 
-//#region Mobile Nav Animation
-const MobileNavElement = document.querySelector("#mobileHeaderNav");
-let isMenuOpen = false;
-const isInlineMobileMenuController =
-    MobileNavElement?.getAttribute("data-menu-controller") === "inline";
-const dimensions = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-}
-const menuTl = gsap.timeline({ paused: true });
-
-if (MobileNavElement && !isInlineMobileMenuController) {
-    menuTl.fromTo(
-        MobileNavElement,
-        {
-            clipPath: `circle(30px at ${dimensions.width + 30}px -30px)`,
-            backgroundColor: "var(--background)",
-        },
-        {
-            clipPath: `circle(${(dimensions.height * 2) + 200}px at 40px 40px)`,
-            backgroundColor: "var(--primaryLite)",
-            duration: 0.6,
-            ease: "power1.inOut"
-        }
-    );
-}
-
-const MobileLinkElement = document.querySelectorAll("#mobileHeaderNav .MobileHeader_Nav");
-const linkTl = gsap.timeline({ paused: true });
-
-if (MobileLinkElement.length !== 0 && !isInlineMobileMenuController) {
-    linkTl.fromTo(MobileLinkElement, transitions.MobileLink.from, transitions.MobileLink.to);
-}
-
-const HamMenuButton = document.querySelector("#Ham_Menu svg");
-
-const closeNav = () => {
-    if (isInlineMobileMenuController) {
-        isMenuOpen = false;
-        HamMenuButton?.classList.remove("isOpen");
-        return;
-    }
-
-    linkTl.reverse();
-    setTimeout(() => {
-        menuTl.reverse();
-    }, 350);
-
-    isMenuOpen = false;
-    HamMenuButton?.classList.remove("isOpen");
-};
-
-if (!isInlineMobileMenuController) {
-    HamMenuButton?.addEventListener('click', () => {
-        if (!isMenuOpen) {
-            menuTl.play();
-            linkTl.play();
-            isMenuOpen = true;
-            HamMenuButton?.classList.add("isOpen");
-        } else {
-            closeNav();
-        }
-    });
-}
-
-const themeToggleMobileBtn = document.getElementById("themeToggleMobile");
-const themeToggleMobileProjectBtn = document.getElementById("themeToggleMobileProject");
-if (!isInlineMobileMenuController) {
-    themeToggleMobileBtn?.addEventListener('click', () => {
-        closeNav();
-    });
-    themeToggleMobileProjectBtn?.addEventListener('click', () => {
-        closeNav();
-    });
-}
-
-window.addEventListener("pageshow", () => {
-    closeNav();
-});
-// #endregion
-
-
 //#region Smooth Scroll
 const lenis = new Lenis();
 lenis.on("scroll", ScrollTrigger.update);
@@ -473,49 +340,40 @@ gsap.ticker.add((time) => {
 });
 gsap.ticker.lagSmoothing(0);
 
-document
-    .querySelectorAll('nav a[href^="#"], a[href^="#home"]')
-    .forEach((el) => {
-        el.addEventListener("click", (e) => {
-            const href = el.getAttribute("href");
-if (!href || !href.startsWith("#")) return;
+document.querySelectorAll('nav a[href^="#"], a[href^="#home"]').forEach((el) => {
+    el.addEventListener("click", (e) => {
+        const href = el.getAttribute("href");
+        if (!href || !href.startsWith("#")) return;
 
-            e.preventDefault();
-             const id = href.slice(1);
-  if (!id) return;
+        e.preventDefault();
+        const id = href.slice(1);
+        if (!id) return;
 
-            const target = document.getElementById(id);
-            if (!target) return;
+        const target = document.getElementById(id);
+        if (!target) return;
 
-            const targetTop = target.getBoundingClientRect().top + window.scrollY;
-            const triggers = ScrollTrigger.getAll();
+        const targetTop = target.getBoundingClientRect().top + window.scrollY;
+        const triggers = ScrollTrigger.getAll();
 
-            triggers.forEach(trigger => {
-                if (!trigger.trigger) return;
-                const triggerTop = trigger.trigger.getBoundingClientRect().top + window.scrollY;
-                if (triggerTop < targetTop && trigger.animation) {
-                    trigger.animation.progress(1, false);
-                }
-            });
-
-            lenis.scrollTo(target);
-
-            // Only close nav if menu is actually open
-            if (window.innerWidth < 1024 && isMenuOpen) {
-                closeNav();
-                isMenuOpen = false;
-                HamMenuButton?.classList.remove("isOpen");
+        triggers.forEach((trigger) => {
+            if (!trigger.trigger) return;
+            const triggerTop = trigger.trigger.getBoundingClientRect().top + window.scrollY;
+            if (triggerTop < targetTop && trigger.animation) {
+                trigger.animation.progress(1, false);
             }
         });
-    });
 
+        const header = [...document.querySelectorAll("header")].find((element) => element.offsetHeight > 0);
+        lenis.scrollTo(target, { offset: -((header?.offsetHeight || 64) + 20) });
+    });
+});
 // #endregion
 
 
 //#region Initial State Check
 function initializeVisibleElements() {
     const allAnimatedElements = document.querySelectorAll(
-        '.Fade_Stagger, .Project_Stagger, .Fade_Up, .Fade_Down, .Fade_In'
+        '.Fade_Stagger, .Project_Stagger, .Fade_Up, .Fade_In'
     );
 
     allAnimatedElements.forEach((element) => {
@@ -533,3 +391,4 @@ if (document.readyState === 'loading') {
 
 ScrollTrigger.addEventListener('refresh', initializeVisibleElements);
 // #endregion
+}

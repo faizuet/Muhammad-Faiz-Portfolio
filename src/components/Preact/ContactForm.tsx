@@ -72,7 +72,7 @@ export default function ContactForm() {
                 <textarea class={`${inputClass} min-h-36 resize-y`} id="contact-message" name="message" placeholder="How can I help?" rows={5} maxLength={5000} required></textarea>
             </div>
             <div class="flex flex-wrap items-center gap-3">
-                <button class="LinkBtnGradient inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 py-2 font-medium outline-none transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-wait disabled:opacity-60" type="submit" disabled={isSending}>
+                <button class="LinkBtnGradient inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 py-2.5 font-medium disabled:cursor-wait disabled:opacity-60" type="submit" disabled={isSending}>
                     {isSending ? "Sending…" : "Send message"}
                     {isSending ? (
                         <svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".25" stroke-width="3"/><path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>

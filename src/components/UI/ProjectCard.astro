@@ -1,29 +1,31 @@
 ---
 import { GithubIcon } from "@/assets/SVGs";
-import type { IProject } from "@/config/ProjectsList";
+import { getProjectSlug, type IProject } from "@/config/ProjectsList";
 import { ArrowUpRightIcon } from "lucide-preact";
 
 type Props = { project: IProject; className?: string };
 const { project, className = "" }: Props = Astro.props;
-const projectPath = `/projects/${project.name.replaceAll(" ", "-").toLowerCase()}`;
+const projectPath = `/projects/${getProjectSlug(project.name)}`;
 ---
 
-<article class={`Project_Stagger Card_Main w-full min-h-[360px] flex flex-col bg-footerAltLite/80 overflow-hidden mt-3 opacity-0 rounded-xl ${className}`}>
-    <a href={projectPath} class="Projects_Preview relative flex min-h-36 items-center justify-center overflow-hidden rounded-lg m-1 bg-skillGradientAlt" aria-label={`View ${project.name} details`}>
-        <span class="font-ubuntu text-3xl md:text-4xl gradientText">{project.name}</span>
-    </a>
-    <div class="relative w-full flex flex-col flex-1 text-[0.95em] p-4 md:px-6 md:py-4 min-h-0">
-        <div class="flex justify-between items-start gap-3">
-            <h3 class="font-ubuntu text-[1.2rem] md:text-[1.4rem]">{project.name}</h3>
-            <div class="flex items-center gap-3 shrink-0">
-                <span class="text-xs tracking-widest text-(--status-warn-fg)">PROJECT</span>
-                {project.sourceUrl && <a href={project.sourceUrl} title={`${project.name} GitHub repository`} target="_blank" rel="noopener noreferrer" class="Projects_Link flex"><GithubIcon width={20} height={20} aria-hidden="true" /><span class="sr-only">{project.name} GitHub</span></a>}
+<article class={`Project_Stagger Card_Main w-full min-h-[360px] flex flex-col bg-footerAltLite/80 overflow-hidden mt-3 opacity-0 rounded-2xl ${className}`}>
+    <div class="card-shell">
+        <a href={projectPath} class="Projects_Preview skillGradientAlt relative flex min-h-40 items-center justify-center overflow-hidden rounded-xl m-1.5" aria-label={`View ${project.name} details`}>
+            <span class="font-ubuntu text-3xl md:text-4xl gradientText px-4 text-center">{project.name}</span>
+        </a>
+        <div class="relative w-full flex flex-col flex-1 text-[0.95em] p-4 md:px-6 md:py-5 min-h-0">
+            <div class="flex justify-between items-start gap-3">
+                <h3 class="font-ubuntu text-[1.2rem] md:text-[1.4rem]">{project.name}</h3>
+                <div class="flex items-center gap-3 shrink-0">
+                    <span class="text-xs tracking-widest text-(--status-warn-fg)">PROJECT</span>
+                    {project.sourceUrl && <a href={project.sourceUrl} title={`${project.name} GitHub repository`} target="_blank" rel="noopener noreferrer" class="Projects_Link flex"><GithubIcon width={20} height={20} aria-hidden="true" /><span class="sr-only">{project.name} GitHub</span></a>}
+                </div>
             </div>
+            <p class="flex-1 py-4 text-center leading-relaxed">{project.shortDescription}</p>
+            <ul class="flex flex-wrap justify-center gap-2" aria-label={`${project.name} technologies`}>
+                {project.technologies.map((technology) => <li class="skill-chip rounded-full border border-primaryLiteAlt bg-background/60 px-2.5 py-1 text-xs">{technology}</li>)}
+            </ul>
+            <a href={projectPath} class="mt-5 flex items-center justify-center gap-2 LinkBtnGradient px-4 py-2.5 rounded-lg font-medium">Project details <ArrowUpRightIcon aria-hidden="true" /></a>
         </div>
-        <p class="flex-1 py-4 text-center">{project.shortDescription}</p>
-        <ul class="flex flex-wrap justify-center gap-2" aria-label={`${project.name} technologies`}>
-            {project.technologies.map((technology) => <li class="rounded-full bg-background/60 px-2 py-1 text-xs">{technology}</li>)}
-        </ul>
-        <a href={projectPath} class="mt-4 flex items-center justify-center gap-2 LinkBtnGradient px-4 py-2 rounded">Project details <ArrowUpRightIcon aria-hidden="true" /></a>
     </div>
 </article>

@@ -1,0 +1,21 @@
+<button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5M6 11l6-6 6 6"></path>
+    </svg>
+</button>
+
+<script is:inline>
+    const backToTop = document.getElementById("backToTop");
+    if (backToTop) {
+        const toggleBackToTop = () => {
+            backToTop.classList.toggle("is-visible", window.scrollY > 480);
+        };
+
+        toggleBackToTop();
+        window.addEventListener("scroll", toggleBackToTop, { passive: true });
+        backToTop.addEventListener("click", () => {
+            const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+        });
+    }
+</script>

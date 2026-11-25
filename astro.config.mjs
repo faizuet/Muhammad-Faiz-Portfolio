@@ -20,21 +20,5 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()]
-  },
-  build: {
-    // Enable CSS code splitting
-    cssCodeSplit: true,
-    inlineStylesheets: 'auto',
-    rollupOptions: {
-      output: {
-        assetFileNames: (assetInfo) => {
-          // Optimize CSS file naming for better caching
-          if (assetInfo.name.endsWith('.css')) {
-            return 'styles/[name].[hash][extname]';
-          }
-          return '[name].[hash][extname]';
-        }
-      }
-    }
   }
 });

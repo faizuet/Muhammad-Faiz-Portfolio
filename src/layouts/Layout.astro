@@ -2,7 +2,7 @@
 import { SEO } from 'astro-seo';
 import { AstroFont } from 'astro-font';
 import { join } from 'node:path';
-import { Header, MobileHeader, Cursor } from '@components/UI';
+import { Header, MobileHeader, Cursor, BackToTop } from '@components/UI';
 import { Footer } from '@components/index';
 
 import '@styles/themes.css';
@@ -34,10 +34,6 @@ const personStructuredData = {
         <meta name="author" content="Muhammad Faiz" />
         <meta name="publisher" content="Muhammad Faiz" />
         <link rel="manifest" href="/manifest.json" />
-
-        <!-- Preload CSS Styles -->
-        <!-- <link rel="preload stylesheet" href="@styles/global.css" as="style" /> -->
-        <!-- <link rel="preload stylesheet" href="@styles/cursor.css" as="style" /> -->
 
         <SEO
             title=`${config.site.title}`
@@ -158,6 +154,7 @@ const personStructuredData = {
         </main>
 
         <Footer config={config.footer} />
+        <BackToTop />
         <Cursor />
         <script src="../script-loader.ts"></script>
     </body>

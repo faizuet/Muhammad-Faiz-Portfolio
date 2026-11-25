@@ -13,7 +13,9 @@ const moonId = `themeMoonSvg-${uniqueId}`;
 
 <button
     id={btnId}
+    type="button"
     title="Toggle Theme"
+    aria-label="Toggle color theme"
     class={`aspect-square w-8 h-8 outline-2 outline-primaryLiteAlt rounded-full relative flex_center cursor-pointer ${className}`}
 >
     <svg
@@ -230,9 +232,6 @@ const moonId = `themeMoonSvg-${uniqueId}`;
                     pseudoElement: "::view-transition-new(root)",
                 },
             );
-
-            // Dispatch event to close mobile nav if open
-            window.dispatchEvent(new CustomEvent("closeMobileNav"));
         };
 
         themeToggleBtn.addEventListener("click", toggleTheme);

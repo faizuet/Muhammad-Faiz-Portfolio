@@ -2,7 +2,7 @@
 import { SEO } from 'astro-seo';
 import { AstroFont } from 'astro-font';
 import { join } from 'node:path';
-import { Cursor, ProjectsHeader } from '@components/UI';
+import { Cursor, ProjectsHeader, BackToTop } from '@components/UI';
 import { Footer } from '@components/index';
 
 import '@styles/themes.css';
@@ -37,11 +37,6 @@ const projectStructuredData = {
         <meta name="keywords" content={config.site.keywords} />
         <meta name="author" content="Muhammad Faiz" />
         <link rel="manifest" href="/manifest.json" />
-
-        <!-- Preload CSS Styles -->
-        <!-- <link rel="preload stylesheet" href="/styles/global.css" as="style" /> -->
-        <!-- <link rel="preload stylesheet" href="/styles/utility.css" as="style" /> -->
-        <!-- <link rel="preload stylesheet" href="/styles/cursor.css" as="style" /> -->
 
         <SEO
             title={title}
@@ -105,7 +100,7 @@ const projectStructuredData = {
                     ],
                     preload: true,
                     display: 'swap',
-                    fallback: 'serif',
+                    fallback: 'sans-serif',
                     cssVariable: 'astro-font-poppins',
                     selector: '.font-poppins',
                 },
@@ -159,6 +154,7 @@ const projectStructuredData = {
             <slot />
         </main>
 
+        <BackToTop />
         <Cursor />
         <Footer config={config.footer} />
         <script src="../script-loader.ts"></script>

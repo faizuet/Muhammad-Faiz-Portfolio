@@ -6,7 +6,7 @@ const { config } = Astro.props;
 
 <section
     id="Hero"
-    class="w-full h-[calc(100vh-4rem)] py-4 bg-background flex justify-evenly lg:justify-around items-center flex-col-reverse lg:flex-row overflow-hidden"
+    class="w-full h-[calc(100vh-4rem)] py-4 flex justify-evenly lg:justify-around items-center flex-col-reverse lg:flex-row overflow-hidden"
 >
     <!-- Hero Intro Info -->
     <div class="w-full lg:w-fit flex justify-start items-center flex-col gap-8">
@@ -45,7 +45,7 @@ const { config } = Astro.props;
                                 aria-label={link.label}
                                 target="_blank"
                                 rel="noreferrer"
-                                class="Fade_Stagger w-[30px] h-[30px] flex items-center justify-center"
+                                class="Fade_Stagger icon-button w-11 h-11 flex items-center justify-center"
                             >
                                 <Fragment set:html={link.icon} />
                             </a>
@@ -62,13 +62,14 @@ const { config } = Astro.props;
         <div
             id="avatarImage"
             role="button"
+            aria-label="Muhammad Faiz portrait"
             class="flex_center w-[180px] sm:w-[250px] aspect-square rounded-full overflow-hidden z-10 cursor-pointer"
             style={{ opacity: 0 }}
         >
             <Image
                 src={config.avatar}
-                alt="Muhammad Faiz, Backend and Cloud Engineer"
-                class="object-cover object-center w-full h-full rounded-full noDrag"
+                alt="Muhammad Faiz, Cloud and Backend Engineer"
+                class="object-cover object-[center_32%] w-full h-full rounded-full"
                 width="500"
                 height="500"
                 priority

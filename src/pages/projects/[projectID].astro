@@ -1,18 +1,18 @@
 ---
 import { ProjectLayout } from "@layouts/index";
 import { CenterTitle, SectionTitle } from "@components/UI";
-import { PROJECTS_LIST } from "@/config/ProjectsList";
+import { PROJECTS_LIST, getProjectSlug } from "@/config/ProjectsList";
 import { themeConfig, siteConfig, headerConfig, footerConfig, heroConfig } from "@/config/portfolio.config";
 
 export function getStaticPaths() {
     return PROJECTS_LIST.filter((project) => !project.isHidden).map((project) => ({
-        params: { projectID: project.name.replaceAll(" ", "-").toLowerCase() },
+        params: { projectID: getProjectSlug(project.name) },
     }));
 }
 
 const { projectID } = Astro.params;
-const project = PROJECTS_LIST.find((item) => item.name.replaceAll(" ", "-").toLowerCase() === projectID);
-if (!project) return Astro.redirect("/404");
+const project = PROJECTS_LIST.find((item) => getProjectSlug(item.name) === projectID);
+if (!project) return Astro.redirect("/projects");
 const author = `${heroConfig.firstName} ${heroConfig.lastName.replace(".", "")}`;
 const canonical = siteConfig.siteUrl ? new URL(`projects/${projectID}`, siteConfig.siteUrl).toString() : undefined;
 ---
@@ -24,14 +24,14 @@ const canonical = siteConfig.siteUrl ? new URL(`projects/${projectID}`, siteConf
     config={{ theme: themeConfig, site: siteConfig, header: headerConfig, footer: footerConfig }}
 >
     <article class="mx-auto max-w-5xl px-4 py-16">
-        <header class="Fade_Up flex_center flex-col gap-5 rounded-2xl bg-skillGradientAlt p-8 md:p-12 text-center">
+        <header class="Fade_Up surface-card flex_center flex-col gap-5 rounded-2xl skillGradientAlt border border-primaryLiteAlt p-8 md:p-12 text-center">
             <h1 class="font-ubuntu text-3xl md:text-5xl gradientText">{project.name}</h1>
             <p class="max-w-3xl text-lg">{project.shortDescription}</p>
             <div class="flex flex-wrap justify-center gap-3">
-                {project.sourceUrl && <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" class="LinkBtnGradient rounded px-5 py-3">Source Code</a>}
+                {project.sourceUrl && <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" class="LinkBtnGradient rounded-lg px-5 py-3 font-medium">Source Code</a>}
             </div>
             <ul class="flex flex-wrap justify-center gap-2" aria-label="Technologies used">
-                {project.technologies.map((technology) => <li class="rounded-full border border-primaryLiteAlt px-3 py-2 text-sm">{technology}</li>)}
+                {project.technologies.map((technology) => <li class="skill-chip rounded-full border border-primaryLiteAlt px-3 py-2 text-sm">{technology}</li>)}
             </ul>
         </header>
         <section class="py-12">
@@ -40,12 +40,12 @@ const canonical = siteConfig.siteUrl ? new URL(`projects/${projectID}`, siteConf
         </section>
         <SectionTitle title="Features" color="primary">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {project.features.map((feature) => <article class="Fade_Up p-5 border border-primaryLiteAlt bg-skillGradientAlt rounded-md"><h3 class="font-ubuntu text-lg">{feature.title}</h3><p class="mt-2">{feature.description}</p></article>)}
+                {project.features.map((feature) => <article class="Fade_Up surface-card p-5 border border-primaryLiteAlt skillGradientAlt rounded-xl"><h3 class="font-ubuntu text-lg">{feature.title}</h3><p class="mt-2 leading-relaxed">{feature.description}</p></article>)}
             </div>
         </SectionTitle>
         <CenterTitle title="Technology Stack" color="secondary" />
         <ul class="flex flex-wrap justify-center gap-3 pb-24">
-            {project.technologies.map((technology) => <li class="Fade_Stagger rounded-lg bg-skillGradientAlt border border-secondaryLiteAlt px-5 py-3">{technology}</li>)}
+            {project.technologies.map((technology) => <li class="Fade_Stagger skill-chip rounded-lg skillGradientAlt border border-secondaryLiteAlt px-5 py-3">{technology}</li>)}
         </ul>
     </article>
 </ProjectLayout>

@@ -1,1 +1,1 @@
-export { default as MuhammadFaizPortrait } from './MuhammadFaizPortrait.png';
+export { default as MuhammadFaizPortrait } from './MuhammadFaizPortrait.jpg';
